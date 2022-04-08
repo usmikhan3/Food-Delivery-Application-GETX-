@@ -7,6 +7,7 @@ import 'package:food_delivery/pages/cart/cart_page.dart';
 import 'package:food_delivery/pages/food/recommnded_food_detail.dart';
 import 'package:food_delivery/pages/home/food_page_body.dart';
 import 'package:food_delivery/pages/home/main_food_page.dart';
+import 'package:food_delivery/pages/splash/splash_page.dart';
 import 'package:food_delivery/routes/route_helper.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -33,16 +34,20 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Get.find<PopularProductController>().getPopularProductList() ;
-    Get.find<RecommendedProductController>().getRecommendedProductList() ;
+
     return Sizer(builder: (context, orientation, deviceType) {
-      return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Food Delivering App',
-        initialRoute: RouteHelper.initial,
-        getPages: RouteHelper.routes,
-       home: MainFoodPage(),
-      );
+      return GetBuilder<PopularProductController>(builder: (_){
+        return GetBuilder<RecommendedProductController>(builder: (_){
+          return GetMaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Food Delivering App',
+            //home: SplashScreen(),
+            initialRoute: RouteHelper.getSplash(),
+            getPages: RouteHelper.routes,
+
+          );
+        });
+      }) ;
     });
   }
 }
