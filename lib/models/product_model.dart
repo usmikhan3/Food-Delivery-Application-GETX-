@@ -68,4 +68,21 @@ ProductModel.fromJson(Map<String, dynamic> json){
 
 }
 
+Map<String,dynamic> toJson(){
+  return{
+    "id":this.id,
+    "name":this.name,
+    "description":this.description,
+    "price":this.price,
+    "stars":this.stars,
+    "img":this.img,
+    "location":this.location,
+    "created_at":this.createAt,
+    "updated_at":this.updatedAt,
+    "type_id":this.typeId,
+  };
+}
+
+
+
 }
